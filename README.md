@@ -1,9 +1,9 @@
 # Table of Contents
 - [Overview](#overview)
 - [Prerequisite](#prerequisite)
-- [Test 1: raw command with JDK-x64](#test-1-raw-command-with-jdk-x64)
+- [Test 1: default command with JDK-x64](#test-1-default-command-with-jdk-x64)
 - [Test 2: optimized command with JDK-x64](#test-2-optimized-command-with-jdk-x64)
-- [Test 3: raw command with JDK-aarch64](#test-3-raw-command-with-jdk-aarch64)
+- [Test 3: default command with JDK-aarch64](#test-3-default-command-with-jdk-aarch64)
 - [Test 4: optimized command with JDK-aarch64](#test-4-optimized-command-with-jdk-aarch64)
 - [References](#references)
 
@@ -30,7 +30,7 @@ cd src/apache
 git clone https://github.com/apache/commons-lang.git
 cd commons-lang
 ```
-## Test 1: raw command with JDK-x64
+## Test 1: default command with JDK-x64
 
 I ran this command on _both_ my M1 Macbook Air and my i9 Macbook Pro.
 
@@ -62,7 +62,7 @@ Explanations:
 - `-T 1C`: use 1 thread per available CPU core
 - `-offline`: do not download from remote repos.
 
-## Test 3: raw command with JDK-aarch64
+## Test 3: default command with JDK-aarch64
 
 Now you need to point `$JAVA_HOME` to JDK-aarch64. This one is only applicable to M1 chips.
 
