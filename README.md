@@ -8,7 +8,7 @@
 - [References](#references)
 
 ## Overview
-This article lists the tests I ran to compare the compilation speed of my M1 Macbook Air vs my Intel Core i9 Macbook Pro.
+This article lists the tests I ran in [my YouTube video](https://youtu.be/o6q8zPmfVLU),  where I compared the compilation speed of my M1 Macbook Air vs my Intel Core i9 Macbook Pro.
 
 Test 1 and Test 2, which run on JDK-x64, were done on _both_ computers.
 
