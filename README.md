@@ -1,18 +1,18 @@
 # 目录
-- [Overview](#overview)
+- [概述](#概述)
 - [先决条件](#先决条件)
-- [Test 1: default command with JDK-x64](#test-1-default-command-with-jdk-x64)
-- [Test 2: optimized command with JDK-x64](#test-2-optimized-command-with-jdk-x64)
-- [Test 3: default command with JDK-aarch64](#test-3-default-command-with-jdk-aarch64)
-- [Test 4: optimized command with JDK-aarch64](#test-4-optimized-command-with-jdk-aarch64)
+- [测试1: 使用JDK-x64, 运行缺省Maven命令](#测试1-使用JDK-x64-运行缺省Maven命令)
+- [测试2: 使用JDK-x64, 运行优化过的Maven命令](#测试2-使用JDK-x64-运行优化过的Maven命令)
+- [测试3: 使用JDK-aarch64, 运行缺省Maven命令](#测试3-使用JDK-aarch64-运行缺省Maven命令)
+- [测试4: 使用JDK-aarch64, 运行优化过的Maven命令](#测试4-使用JDK-aarch64-运行优化过的Maven命令)
 - [引用](#引用)
 
-## Overview
+## 概述
 本文列出了我在[我的YouTube视频: M1性能测试](https://youtu.be/o6q8zPmfVLU)里跑过的测试命令，用于比较我的M1 Macbook Ai和我的Intel Core i9 Macbook Pro的编译速度。
 
-Test 1和Test 2使用的是JDK-x64, 在两台机器上都运行了。
+测试1和测试2使用的是JDK-x64, 在两台机器上都运行了。
 
-Test 3和Test 4使用的是JDK-aarch64, 只在M1 Macbook Air上运行。
+测试3和测试4使用的是JDK-aarch64, 只在M1 Macbook Air上运行。
 
 ## 先决条件
 在你运行这些测试之前，确保你的机器安装了JDK和Maven。
@@ -32,8 +32,9 @@ cd src/apache
 git clone https://github.com/apache/commons-lang.git
 cd commons-lang
 ```
-## Test 1: default command with JDK-x64
-我在M1 Macbook Air和i9 Macbook Pro上都运行了该命令。
+## 测试1: 使用JDK-x64, 运行缺省Maven命令
+
+我在M1 Macbook Air和i9 Macbook Pro上都运行了该测试。
 
 此处我假设你的`$JAVA_HOME`指向的是JDK-x64。
 
@@ -49,8 +50,9 @@ mvn clean -Drat.skip=true compile
 
 该命令的输出会告诉你编译时长。
 
-## Test 2: optimized command with JDK-x64
-我在M1 Macbook Air和i9 Macbook Pro上都运行了该命令。
+## 测试2: 使用JDK-x64, 运行优化过的Maven命令
+
+我在M1 Macbook Air和i9 Macbook Pro上都运行了该测试。
 
 ```
 MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1" \
@@ -62,7 +64,7 @@ mvn clean -T 1C -Drat.skip=true compile -offline
 - `-T 1C`: 为CPU的每个核都分配一个线程。
 - `-offline`: 不要从远端repos下载, 以确保整个编译过程都在本地进行运算。
 
-## Test 3: default command with JDK-aarch64
+## 测试3: 使用JDK-aarch64, 运行缺省Maven命令
 
 该测试只在M1 Macbook Air上运行。现在你需要把`$JAVA_HOME`指向JDK-aarch64。
 ```
@@ -70,7 +72,8 @@ JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-16.jdk/Contents/Home" \
 mvn clean -Drat.skip=true compile
 ```
 
-## Test 4: optimized command with JDK-aarch64
+## 测试4: 使用JDK-aarch64, 运行优化过的Maven命令
+
 该测试只在M1 Macbook Air上运行。现在你需要把`$JAVA_HOME`指向JDK-aarch64，并且在命令中加入优化参数。
 
 ```
