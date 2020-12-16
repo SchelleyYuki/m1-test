@@ -22,7 +22,7 @@ To download Zulu JDK-aarch64, check out [this page](https://www.azul.com/downloa
 /Library/Java/JavaVirtualMachines/zulu-16.jdk
 ```
 
-Update on 12/15/2020: the tests will be more fair if you use Zulu JDK (with the _same_ version) in _both_ M1 Mackbook Air and i9 Macbook Pro. In my orignal tests I was using non-Zulu JDK in my i9 Macbook Pro. Earlier today I installed Zulu Java 8 on _both_ computers and tested again, and the results were highly consistent with the final result I showed in my video. 
+(Update on 12/15/2020: the tests will be more fair if you use Zulu JDK (with the _same_ version) in _both_ M1 Mackbook Air and i9 Macbook Pro. In my orignal tests I was using non-Zulu JDK in my i9 Macbook Pro. Earlier today I installed Zulu Java 8 on _both_ computers and tested again, and the results were highly consistent with the final result I showed in my video)
 
 Next, checkout a Java repo, like "Apache Commons Lang".
 ```
