@@ -1,30 +1,30 @@
-# Table of Contents
+# 目录
 - [Overview](#overview)
-- [Prerequisite](#prerequisite)
+- [先决条件](#先决条件)
 - [Test 1: default command with JDK-x64](#test-1-default-command-with-jdk-x64)
 - [Test 2: optimized command with JDK-x64](#test-2-optimized-command-with-jdk-x64)
 - [Test 3: default command with JDK-aarch64](#test-3-default-command-with-jdk-aarch64)
 - [Test 4: optimized command with JDK-aarch64](#test-4-optimized-command-with-jdk-aarch64)
-- [References](#references)
+- [引用](#引用)
 
 ## Overview
-This article lists the tests I ran in [my YouTube video](https://youtu.be/o6q8zPmfVLU),  where I compared the compilation speed of my M1 Macbook Air vs my Intel Core i9 Macbook Pro.
+本文列出了我在[我的YouTube视频: M1性能测试](https://youtu.be/o6q8zPmfVLU)里跑过的测试命令，用于比较我的M1 Macbook Ai和我的Intel Core i9 Macbook Pro的编译速度。
 
-Test 1 and Test 2, which run on JDK-x64, were done on _both_ computers.
+Test 1和Test 2使用的是JDK-x64, 在两台机器上都运行了。
 
-Test 3 and Test 4, which run on JDK-aarch64, were done _only_ on my M1 Macbook Air.
+Test 3和Test 4使用的是JDK-aarch64, 只在M1 Macbook Air上运行。
 
-## Prerequisite
-Before you run the tests, make sure you have JDK and Maven installed.
+## 先决条件
+在你运行这些测试之前，确保你的机器安装了JDK和Maven。
 
-To download Zulu JDK-aarch64, check out [this page](https://www.azul.com/downloads/zulu-community/?os=macos&architecture=arm-64-bit&package=jdk). On my Mac, the JDK is installed under:
+Zulu JDK-aarch64的下载地址在这个[页面](https://www.azul.com/downloads/zulu-community/?os=macos&architecture=arm-64-bit&package=jdk)。在我的M1 Macbook Air上, 该JDK被安装在了如下路径: 
 ```
 /Library/Java/JavaVirtualMachines/zulu-16.jdk
 ```
 
-(Update on 12/15/2020: the tests will be more fair if you use Zulu JDK (with the _same_ version) in _both_ M1 Mackbook Air and i9 Macbook Pro. In my orignal tests I was using non-Zulu JDK in my i9 Macbook Pro. Earlier today I installed Zulu Java 8 on _both_ computers and tested again, and the results were highly consistent with the final result I showed in my video)
+(2020年12月15日更新: 为了让对比测试更加地公平, 最好在i9 Macbook Pro上也使用Zulu JDK, 并且使用和在M1 Macbook Air上版本相同的Zulu JDK。在录制视频时, 我在i9 Macbook Pro上使用的JDK不是Zulu JDK。今天早些时候，我在两台机器上都安装了Zulu Java 8, 又做了一次对比测试。测试结果与我的YouTube视频里的最终结果高度吻合。）
 
-Next, checkout a Java repo, like "Apache Commons Lang".
+接下来, 下载一个Java repo，比如Apache Commons Lang。
 ```
 cd
 mkdir -p src/apache
@@ -33,55 +33,52 @@ git clone https://github.com/apache/commons-lang.git
 cd commons-lang
 ```
 ## Test 1: default command with JDK-x64
+我在M1 Macbook Air和i9 Macbook Pro上都运行了该命令。
 
-I ran this command on _both_ my M1 Macbook Air and my i9 Macbook Pro.
+此处我假设你的`$JAVA_HOME`指向的是JDK-x64。
 
-Here I assume your `$JAVA_HOME` points to JDK-x64.
-
-Run the following to compile the repo.
+以下是编译命令。
 ```
 mvn clean compile
 ```
 
-If you get the `Too many files with unapproved license` error, try the following to get around it:
+如果遇到`Too many files with unapproved license`这个错误，加一个参数就能解决，像下面这样: 
 ```
 mvn clean -Drat.skip=true compile
 ```
 
-You will see how long the compilation takes from the output of the command.
+该命令的输出会告诉你编译时长。
 
 ## Test 2: optimized command with JDK-x64
-
-I ran this command on _both_ my M1 Macbook Air and my i9 Macbook Pro.
+我在M1 Macbook Air和i9 Macbook Pro上都运行了该命令。
 
 ```
 MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1" \
 mvn clean -T 1C -Drat.skip=true compile -offline
 ```
 
-Explanations:
-- `-XX:+TieredCompilation -XX:TieredStopAtLevel=1`: speeds up JVM startup.
-- `-T 1C`: use 1 thread per available CPU core
-- `-offline`: do not download from remote repos.
+解释:
+- `-XX:+TieredCompilation -XX:TieredStopAtLevel=1`: 加速JVM的启动速度。
+- `-T 1C`: 为CPU的每个核都分配一个线程。
+- `-offline`: 不要从远端repos下载, 以确保整个编译过程都在本地进行运算。
 
 ## Test 3: default command with JDK-aarch64
 
-Now you need to point `$JAVA_HOME` to JDK-aarch64. This one is only applicable to M1 chips.
-
+该测试只在M1 Macbook Air上运行。现在你需要把`$JAVA_HOME`指向JDK-aarch64。
 ```
 JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-16.jdk/Contents/Home" \
 mvn clean -Drat.skip=true compile
 ```
 
 ## Test 4: optimized command with JDK-aarch64
+该测试只在M1 Macbook Air上运行。现在你需要把`$JAVA_HOME`指向JDK-aarch64，并且在命令中加入优化参数。
 
-Now point `$JAVA_HOME` to JDK-aarch64, and add the flags that speed up the build. This one is only applicable to M1 chips.
 ```
 JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-16.jdk/Contents/Home" \
 MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1" \
 mvn clean -T 1C -Drat.skip=true compile -offline
 ```
 
-## References
+## 引用
 - [How to Speed up Your Maven Build](https://www.jrebel.com/blog/how-to-speed-up-your-maven-build)
 - [JEP 391: macOS/AArch64 Port](https://bugs.openjdk.java.net/browse/JDK-8251280)
