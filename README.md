@@ -6,6 +6,7 @@
 - [测试3: 使用JDK-aarch64, 运行缺省Maven命令](#测试3-使用JDK-aarch64-运行缺省Maven命令)
 - [测试4: 使用JDK-aarch64, 运行优化过的Maven命令](#测试4-使用JDK-aarch64-运行优化过的Maven命令)
 - [引用](#引用)
+- [关注我的频道](#关注我的频道)
 
 ## 概述
 本文列出了我在[我的YouTube视频: M1性能测试](https://youtu.be/o6q8zPmfVLU)里跑过的测试命令，用于比较我的M1 Macbook Ai和我的Intel Core i9 Macbook Pro的编译速度。
@@ -85,3 +86,7 @@ mvn clean -T 1C -Drat.skip=true compile -offline
 ## 引用
 - [How to Speed up Your Maven Build](https://www.jrebel.com/blog/how-to-speed-up-your-maven-build)
 - [JEP 391: macOS/AArch64 Port](https://bugs.openjdk.java.net/browse/JDK-8251280)
+
+## 关注我的频道
+- 油管: [youtube.com/c/SchelleyYuki](https://www.youtube.com/c/SchelleyYuki)
+- Instagram: [instagram.com/schelleyyuki_/](https://www.instagram.com/schelleyyuki_/)
