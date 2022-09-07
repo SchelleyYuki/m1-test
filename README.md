@@ -15,6 +15,12 @@
 
 测试3和测试4使用的是JDK-aarch64, 只在M1 Macbook Air上运行。
 
+### Java学习资源
+对学习Java感兴趣的同学，可以参考以下学习资源:
+- [编程入门该学哪门语言? Java? Python? JavaScript? 如何加强编程基本功?](https://youtu.be/6B9Olpve4n0)
+- [分享Java学习经验和Java教程, 解密初学Java的常见误区](https://youtu.be/IFDjrK2y5s4)
+- [如何写出更优雅的Java代码?](https://youtu.be/x4z3K0BsrwM)
+
 ## 先决条件
 在你运行这些测试之前，确保你的机器安装了JDK和Maven。
 
